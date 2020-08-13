@@ -54,13 +54,18 @@ export function getStore(callback){
     /* Articles
     ======================== */
     let articles = objects.type['post']
-    articles = _.sortBy(articles, 'order')
+    articles.sort(function(a,b){
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+      return new Date(b.created) - new Date(a.created);
+    });
+    // console.log(articles)
     AppStore.data.articles = articles
 
     /* Work Items
     ======================== */
     let work_items = objects.type['work']
-    work_items = _.sortBy(work_items, 'order')
+    work_items = _.sortBy(work_items, 'created')
     AppStore.data.work_items = work_items
     
     // Emit change

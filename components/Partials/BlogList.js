@@ -16,7 +16,6 @@ export default class BlogList extends Component {
     let data = this.props.data
     let item_num = data.item_num
     let articles = data.articles
-
     let load_more
     let show_more_text = 'Show More Articles'
 
@@ -36,8 +35,18 @@ export default class BlogList extends Component {
 
     articles = _.take(articles, item_num)
     
+    articles.sort(function(a,b){
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+      return new Date(b.created) - new Date(a.created);
+    });
+
+    // console.log(articles)
+    
+
     let articles_html = articles.map(( article ) => {
       let date_obj = new Date(article.created)
+      // console.log(article)
       let created = (date_obj.getMonth()+1) + '/' + date_obj.getDate() + '/' + date_obj.getFullYear()
       return (
 
