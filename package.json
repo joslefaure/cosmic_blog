@@ -2,7 +2,7 @@
   "name": "react-universal-blog",
   "version": "1.0.0",
   "engines": {
-    "node": "4.1.2",
+    "node": "12.18.0",
     "npm": "3.5.2"
   },
   "description": "",
